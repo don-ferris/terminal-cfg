@@ -136,8 +136,8 @@ alias top10cpu='ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head'
 ## Get server cpu info ##
 alias cpuinfo='lscpu'
 
-# Resume wget by default
-alias wget='wget -c'
+# Download a file (wget) with resume by default
+alias download='wget -c'
 
 # output file tree as text (ctrl+F!)
 alias filetree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g' > .filetree && xdg-open .filetree"
