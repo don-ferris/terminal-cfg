@@ -1,0 +1,110 @@
+# ls current directory
+alias .='ls -lA --group-directories-first --color='always''
+
+# Print my public IP
+alias publicip='curl ipinfo.io/ip'
+
+# basic info re: this PC
+alias thispc='uname -a'
+
+# edit script in ~/scripts
+alias edit='micro'
+
+# Change dir then list contents
+fn_cdls() {
+  cd "$1"
+  ls
+}
+
+alias cdls='fn_cdls'
+
+# Make dir then cd into it
+fn_md() {
+  THEDIR="$*"
+  THEDIR=$?
+  echo 'The DIR = $THEDIR'
+}
+
+alias md='fn_md'
+
+# Easy update & upgrade
+alias upd8="sudo apt update && sudo apt upgrade"
+
+# CLI calculator
+alias calc='bc -l'
+
+# up one directory
+alias ..='cd .. && ls'
+
+# up 2 directories
+alias ...='cd ../.. && ls'
+
+# up 3 directories
+alias ....='cd ../../.. && ls'
+
+# up 4 directories
+alias ....='cd ../../../.. && ls'
+
+# quick ping
+alias ping='ping -c 8 -i .2'
+
+
+fn_sysinfo() {
+  OUTFILE=$HOME/.sysinfo
+  echo "
+    SYSTEM MEMORY USAGE
+  " > $OUTFILE
+  free -m -l -t >> $OUTFILE
+  echo "
+
+================================================================
+
+    TOP PROCESSES - MEMORY 
+  " >> $OUTFILE
+  ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head >> $OUTFILE
+  echo "
+  
+================================================================
+  
+    TOP PROCESSES - CPU 
+  " >> $OUTFILE
+  ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head >> $OUTFILE
+  echo "
+  
+================================================================
+  
+    PARTITION USAGE 
+  " >> $OUTFILE
+  df -hlT --exclude-type=tmpfs --exclude-type=devtmpfs >> $OUTFILE
+  echo "
+    
+================================================================
+    
+    TOP DISK CONSUMPTION (IN $HOME)
+  " >> $OUTFILE
+  du -hsx * | sort -rh | head -10 >> $OUTFILE
+  echo "
+  
+    " >> $OUTFILE
+  xdg-open $OUTFILE
+}
+
+alias sysinfo='fn_sysinfo'
+
+## pass options to free ##
+alias meminfo='free -m -l -t'
+ 
+## get top process eating memory
+alias top10mem='ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head'
+ 
+## get top process eating cpu ##
+alias top10cpu='ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head'
+ 
+## Get server cpu info ##
+alias cpuinfo='lscpu'
+
+# Resume wget by default
+alias wget='wget -c'
+
+# output file tree as text (ctrl+F!)
+alias filetree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g' > .filetree && xdg-open .filetree"
