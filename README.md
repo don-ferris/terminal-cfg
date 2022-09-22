@@ -9,5 +9,7 @@ cd ~
 git init
 git remote add origin https://github.com/don-ferris/bash-aliases.git
 git pull origin master
-
+echo 'source ~/.aliases' >> ~/.bashrc
+source ~/.bashrc
+cat ~/.bashrc
 ```
