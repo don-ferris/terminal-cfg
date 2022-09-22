@@ -1,8 +1,41 @@
+# Aliases
+# alias alias_name="command_to_run"
+
+# run command that will fail with root privilege error
+alias roottest='ls -al /root && fc -s roottest='ls -al /root'
+
+# repeat last command with sudo
+alias sud='sudo $(history -p !!)'
+
+# repeat last command replacing badstr with goodstr
+alias fix='fc -s 
+alias fix-USAGE='fix badstr=goodstr where badstr=bad string in previous command and goodstr=the string to replace it'
+
+# edit .bashrc then refresh (source) it
+alias brc='micro ~/.bashrc && source ~/.bashrc'
+
+# List scripts (create scripts dir if it doesn't exist)
+fn_scripts() {
+	DIR=~/scripts
+	if [ ! -d "$DIR" ]; then
+	    mkdir ~/scripts
+	fi
+	pushd ~/scripts
+	chmod +x *
+	ls -al
+	echo "Current directory is now ~/scripts. Use popd to return to the previous directory."
+}
+
+alias scripts='fn_scripts'
+
 # ls current directory
 alias .='ls -lA --group-directories-first --color='always''
 
+# Detailed ls
+# alias ls='ls -lAi --group-directories-first --color='always''
+
 # Print my public IP
-alias publicip='curl ipinfo.io/ip'
+alias myip='curl ipinfo.io/ip'
 
 # basic info re: this PC
 alias thispc='uname -a'
@@ -18,11 +51,11 @@ fn_cdls() {
 
 alias cdls='fn_cdls'
 
-# Make dir then cd into it
-fn_md() {
-  THEDIR="$*"
-  THEDIR=$?
-  echo 'The DIR = $THEDIR'
+# Create directory then cd into it
+fn_md () {
+  mkdir "$1"
+  cd "$1"
+  pwd
 }
 
 alias md='fn_md'
@@ -48,8 +81,6 @@ alias ....='cd ../../../.. && ls'
 # quick ping
 alias ping='ping -c 8 -i .2'
 
-#re-run last command with sudo
-^='sudo !!'
 
 fn_sysinfo() {
   OUTFILE=$HOME/.sysinfo
