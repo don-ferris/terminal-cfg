@@ -32,7 +32,7 @@ alias scripts='fn_scripts'
 alias .='ls -lA --group-directories-first --color='always''
 
 # install from .deb file
-# alias inst='sudo dpkg -i'
+alias inst='sudo dpkg -i'
 
 # Print my public IP
 alias myip='curl ipinfo.io/ip'
