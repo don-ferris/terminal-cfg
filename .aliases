@@ -48,6 +48,8 @@ alias ....='cd ../../../.. && ls'
 # quick ping
 alias ping='ping -c 8 -i .2'
 
+#re-run last command with sudo
+^='sudo !!'
 
 fn_sysinfo() {
   OUTFILE=$HOME/.sysinfo
