@@ -5,7 +5,7 @@
 alias S='sudo'
 
 # repeat last command replacing badstr with goodstr
-alias fix='fc -s && echo USAGE\=fix badstr=goodstr where badstr\=bad string in previous command and goodstr\=the string to replace it'
+alias fix='fc -s && echo USAGE=fix badstr=goodstr where badstr=bad string in previous command and goodstr=the string to replace it'
 
 # edit .bashrc then refresh (source) it
 alias brc='micro ~/.bashrc && source ~/.bashrc'
