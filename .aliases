@@ -1,22 +1,79 @@
 # Aliases
 # alias alias_name="command_to_run"
 
-# shortcut for sudo
-alias S='sudo'
+# . (DOT) - ls current directory
+alias .='ls -lA --group-directories-first --color='always''
 
-# shortcut to home directory (this may already exist but this alias won't hurt anything
-alias ~='cd ~'
+# .. (DOT DOT) - up one directory
+alias ..='cd .. && ls'
 
-# repeat last command replacing badstr with goodstr
-alias fix='fc -s && echo USAGE=fix badstr=goodstr where badstr=bad string in previous command and goodstr=the string to replace it'
+# ... (DOT DOT DOT) - up 2 directories
+alias ...='cd ../.. && ls'
 
-# edit .bashrc then refresh (source) it
+# .... (DOT DOT DOT DOT) - up 3 directories
+alias ....='cd ../../.. && ls'
+
+# EDIT .aliases then refresh (source) it
+alias als='micro ~/.aliases && source ~/.aliases'
+
+# EDIT .bashrc then refresh (source) it
 alias brc='micro ~/.bashrc && source ~/.bashrc'
 
-# edit .aliases then refresh (source) it
-alias brc='micro ~/.aliases && source ~/.aliases'
+# CALC - CLI calculator
+alias calc='bc -l'
 
-# List scripts (create scripts dir if it doesn't exist)
+# CD THEN LS - Change dir then list contents
+fn_cdls() {
+  cd "$1"
+  ls
+}
+alias cdls='fn_cdls'
+ 
+## Get server cpu info ##
+alias cpuinfo='lscpu'
+
+# Download a file (wget) with resume by default
+alias download='wget -c'
+
+# EDIT (file using micro editor)
+alias edit='micro'
+
+# EDIT .bashrc then refresh (source) it
+alias edbrc='micro ~/.bashrc && source ~/.bashrc'
+
+# output file tree as text (ctrl+F!)
+alias filetree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g' > .filetree && xdg-open .filetree"
+
+# FIX - repeat last command replacing badstr with goodstr
+alias fix='fc -s && echo USAGE=fix badstr=goodstr where badstr=bad string in previous command and goodstr=the string to replace it'
+
+# INSTALL from .deb file
+alias inst='sudo dpkg -i'
+
+# INSTALL from .deb file
+alias install='sudo dpkg -i'
+
+# MAKE DIR then CD into it
+fn_md () {
+  mkdir "$1"
+  cd "$1"
+  pwd
+}
+alias md='fn_md'
+
+## pass options to free ##
+alias meminfo='free -m -l -t'
+
+# IP (PUBLIC) - Print my public IP
+alias myip='curl ipinfo.io/ip'
+
+# PING (quick ping)
+alias ping='ping -c 8 -i .2'
+
+# sudo
+alias S='sudo'
+
+# SCRIPTS - List scripts (create scripts dir if it doesn't exist)
 fn_scripts() {
 	DIR=~/scripts
 	if [ ! -d "$DIR" ]; then
@@ -27,61 +84,7 @@ fn_scripts() {
 	ls -al
 	echo "Current directory is now ~/scripts. Use popd to return to the previous directory."
 }
-
 alias scripts='fn_scripts'
-
-# ls current directory
-alias .='ls -lA --group-directories-first --color='always''
-
-# install from .deb file
-alias inst='sudo dpkg -i'
-
-# Print my public IP
-alias myip='curl ipinfo.io/ip'
-
-# basic info re: this PC
-alias thispc='uname -a'
-
-# edit script in ~/scripts
-alias edit='micro'
-
-# Change dir then list contents
-fn_cdls() {
-  cd "$1"
-  ls
-}
-
-alias cdls='fn_cdls'
-
-# Create directory then cd into it
-fn_md () {
-  mkdir "$1"
-  cd "$1"
-  pwd
-}
-
-alias md='fn_md'
-
-# Easy update & upgrade
-alias upd8="sudo apt update && sudo apt upgrade"
-
-# CLI calculator
-alias calc='bc -l'
-
-# up one directory
-alias ..='cd .. && ls'
-
-# up 2 directories
-alias ...='cd ../.. && ls'
-
-# up 3 directories
-alias ....='cd ../../.. && ls'
-
-# up 4 directories
-alias ....='cd ../../../.. && ls'
-
-# quick ping
-alias ping='ping -c 8 -i .2'
 
 
 fn_sysinfo() {
@@ -123,23 +126,19 @@ fn_sysinfo() {
     " >> $OUTFILE
   xdg-open $OUTFILE
 }
-
 alias sysinfo='fn_sysinfo'
 
-## pass options to free ##
-alias meminfo='free -m -l -t'
- 
-## get top process eating memory
-alias top10mem='ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head'
+# MACHINE (BASIC INFO) - basic info re: this PC
+alias thispc='uname -a'
  
 ## get top process eating cpu ##
 alias top10cpu='ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head'
  
-## Get server cpu info ##
-alias cpuinfo='lscpu'
+## get top process eating memory
+alias top10mem='ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head'
 
-# Download a file (wget) with resume by default
-alias download='wget -c'
+# Easy update & upgrade
+alias upd8="sudo apt update && sudo apt upgrade"
 
-# output file tree as text (ctrl+F!)
-alias filetree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g' > .filetree && xdg-open .filetree"
+# HOME - shortcut to home directory (this may already exist but this alias won't hurt anything
+alias ~='cd ~'
