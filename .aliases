@@ -4,6 +4,9 @@
 # shortcut for sudo
 alias S='sudo'
 
+# shortcut to home directory (this may already exist but this alias won't hurt anything
+alias ~='cd ~'
+
 # repeat last command replacing badstr with goodstr
 alias fix='fc -s && echo USAGE=fix badstr=goodstr where badstr=bad string in previous command and goodstr=the string to replace it'
 
