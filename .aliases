@@ -1,122 +1,88 @@
 # Aliases
 # alias alias_name="command_to_run"
 
+###################################################################
+#	. (DOT) - ls current directory
+alias .='ls -la --group-directories-first --color='always''
 
 ###################################################################
-###   . (DOT) - ls current directory                            ###
-###################################################################
-alias .='ls -lA --group-directories-first --color='always''
-
+#	.. (DOT DOT) - up one directory (& ls)
+alias ..='cd .. && ls -la'
 
 ###################################################################
-###   .. (DOT DOT) - up one directory (& ls)                    ###
-###################################################################
-alias ..='cd .. && ls'
-
+#	... (DOT DOT DOT) - up 2 directories (& ls)
+alias ...='cd ../.. && ls -la'
 
 ###################################################################
-###   ... (DOT DOT DOT) - up 2 directories (& ls)               ###
-###################################################################
-alias ...='cd ../.. && ls'
-
+#   .... (DOT DOT DOT DOT) - up 3 directories (& ls)
+alias ....='cd ../../.. && ls -la'
 
 ###################################################################
-###   .... (DOT DOT DOT DOT) - up 3 directories (& ls)          ###
-###################################################################
-alias ....='cd ../../.. && ls'
-
+#   EDIT .aliases then refresh (source) it
+alias als='nano ~/.aliases && source ~/.bashrc'
 
 ###################################################################
-###   EDIT .aliases then refresh (source) it                    ###
-###################################################################
-alias als='micro ~/.aliases && source ~/.bashrc'
-
+#   EDIT .bashrc then refresh (source) it
+alias brc='nano ~/.bashrc && source ~/.bashrc'
 
 ###################################################################
-###   EDIT .bashrc then refresh (source) it                     ###
-###################################################################
-alias brc='micro ~/.bashrc && source ~/.bashrc'
-
-
-###################################################################
-###   CALC - CLI calculator                                     ###
-###################################################################
+#   CALC - CLI calculator
 alias calc='bc -l'
 
-
 ###################################################################
-###   CD THEN LS - Change dir then list contents                ###
-###################################################################
+#	CD THEN LS - Change dir then list contents
 fn_cdls() {
   cd "$1"
-  ls
+  ls -la
 }
 alias cdls='fn_cdls'
-
-
-###################################################################
-###   Get CPU info                                              ###
-###################################################################
-alias cpuinfo='lscpu'
-
-
-###################################################################
-###   INSTALL from .deb file                                    ###
-###################################################################
-alias deb='sudo dpkg -i'
-
-
-###################################################################
-###   Download a file (wget) with resume by default             ###
-###################################################################
-alias download='wget -c'
-
-
-###################################################################
-###   EDIT (file using micro editor)                            ###
-###################################################################
-alias edit='micro'
-
-
-###################################################################
-###   EDIT .bashrc then refresh (source) it                     ###
-###################################################################
-alias edbrc='micro ~/.bashrc && source ~/.bashrc'
-
-
-###################################################################
-###   output file tree as text (ctrl+F!)                        ###
-###################################################################
-alias filetree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g' > .filetree && xdg-open .filetree"
-
-
-###################################################################
-###   FIX - repeat last command replacing badstr with goodstr   ###
-###################################################################
-alias fix='fc -s && echo USAGE=fix badstr=goodstr where badstr=bad string in previous command and goodstr=the string to replace it'
-
-
-###################################################################
-###   INST - apt -install                                       ###
-###################################################################
-alias inst='apt install -y'
-
-
-###################################################################
-###   INSTALL - apt -install                                    ###
-###################################################################
-alias install='apt install -y'
-
-
-###################################################################
-###   CD THEN LS - Change dir then list contents                ###
-###################################################################
 alias lscd='fn_cdls'
 
+###################################################################
+#	docker-compose up -d                             
+alias dcup='docker-compose up -d'
 
 ###################################################################
-###   MAKE DIR then CD into it                                  ###
+#	edit docker-compose.yml
+alias edcy='nano docker-compose.yml'
+
 ###################################################################
+#	Get CPU info                              
+alias cpuinfo='lscpu'
+
+###################################################################
+#	INSTALL from .deb file                    
+alias deb='sudo dpkg -i'
+
+###################################################################
+#	Get disk info
+alias disks='lsblk'
+alias drvs='lsblk'
+
+###################################################################
+#	Download a file (wget) with resume by default
+alias dl='wget -c'
+alias download='wget -c'
+
+###################################################################
+#	EDIT (file using nano editor)            
+alias edit='sudo nano'
+
+###################################################################
+#	output file tree as text (ctrl+F!)        
+alias filetree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g' > .filetree && xdg-open .filetree"
+
+###################################################################
+#	Fix nano key bindings        
+alias fixnano='sudo nano /etc/nanorc'
+
+###################################################################
+#	INSTALL - apt -install                    
+alias install='sudo apt install'
+alias inst='sudo apt install'
+
+###################################################################
+#	MAKE DIR then CD into it                  
 fn_md () {
   mkdir "$1"
   cd "$1"
@@ -124,33 +90,24 @@ fn_md () {
 }
 alias md='fn_md'
 
-
 ###################################################################
-###   pass options to free                                      ###
-###################################################################
+#	MEMINFO
 alias meminfo='free -m -l -t'
 
-
 ###################################################################
-###   IP (PUBLIC) - Print my public IP                          ###
-###################################################################
+#	IP (PUBLIC) - Print my public IP          
 alias myip='curl ipinfo.io/ip'
 
-
 ###################################################################
-###   PING (quick ping)                                         ###
-###################################################################
+#	PING (quick ping)                         
 alias ping='ping -c 8 -i .2'
 
+###################################################################
+#	sudo shortcut                             
+alias ss='sudo'
 
 ###################################################################
-###   sudo shortcut                                             ###
-###################################################################
-alias S='sudo'
-
-
-###################################################################
-###   SCRIPTS - List scripts (create dir if it doesn't exist)   ###
+#	SCRIPTS - List scripts (create dir if it doesn't exist)   ###
 ###################################################################
 fn_scripts() {
 	DIR=~/scripts
@@ -164,9 +121,8 @@ fn_scripts() {
 }
 alias scripts='fn_scripts'
 
-
 ###################################################################
-###   SYSINFO - Generate a quick system report                  ###
+#	SYSINFO - Generate a quick system report  
 ###################################################################
 fn_sysinfo() {
   OUTFILE=$HOME/.sysinfo
@@ -209,33 +165,23 @@ fn_sysinfo() {
 }
 alias sysinfo='fn_sysinfo'
 
-
 ###################################################################
-###   MACHINE (BASIC INFO) - basic info re: this PC             ###
-###################################################################
+#	MACHINE (BASIC INFO) - basic info re: this PC             ###
 alias thispc='uname -a'
 
-
 ################################################################### 
-###   get top process eating cpu                                ###
-###################################################################
+#	get top process eating cpu                
 alias top10cpu='ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head'
 
-
 ################################################################### 
-###  get top process eating memory                              ###
-###################################################################
+###  get top process eating memory              
 alias top10mem='ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head'
 
-
 ###################################################################
-###   Easy update & upgrade                                     ###
-###################################################################
+#	Easy update & upgrade                     
 alias upd8="sudo apt update && sudo apt upgrade"
 
-
 ###################################################################
-###   HOME - shortcut to home directory (this may already       ###
-###   but if so, no harm done                                   ###
-###################################################################
+#	HOME - shortcut to home directory (this may already       ###
+#	but if so, no harm done                   
 alias ~='cd ~'
