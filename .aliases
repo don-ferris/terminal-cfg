@@ -33,6 +33,11 @@ alias brc="nano ~/.bashrc && source ~/.bashrc"
 
 ###################################################################
 
+#   C. - Clear then ls
+alias c.="clear && ls-la"
+
+###################################################################
+
 #   CALC - CLI calculator
 alias calc="bc -l"
 
