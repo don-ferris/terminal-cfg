@@ -96,7 +96,7 @@ alias filetree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g' > .filetr
 ###################################################################
 
 #>>>	Fix nano key bindings        
-alias fixnano="sudo nano /etc/nanorc"
+alias fixnano="wget -c https://github.com/don-ferris/terminal-cfg/raw/main/nanorc && sudo cp ./nanorc /etc"
 
 ###################################################################
 
