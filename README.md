@@ -1,6 +1,8 @@
 # bash-aliases
 .aliases (text) file with my favorite aliases for downloading/using on a new machine
 
+wget -c https://github.com/don-ferris/terminal-cfg/raw/main/.aliases
+
 Usage:
 
 On new machine...
