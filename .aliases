@@ -50,11 +50,18 @@ fn_cdls() {
 }
 alias cdls="fn_cdls"
 alias lscd="fn_cdls"
+alias cl="fn_cdls"
 
 ###################################################################
 
 #>>>	docker-compose up -d                             
 alias dcup="docker-compose up -d"
+
+###################################################################
+
+#>>>	docker-compose down
+alias dcdown="docker-compose down"
+alias dcdn="docker-compose down"
 
 ###################################################################
 
